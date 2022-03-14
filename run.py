@@ -49,18 +49,28 @@ def count_hit_boats(plank):
     return count
 
 
+def validate_name(name):
+    try:
+        if name == :
+            raise ValueError(
+                f"Alphabets are required, you provided {number}")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again\n")
+        return False
+
+    return True
+
+
 def main():
     create_boats(hidden_plank)
     print(hidden_plank)
     turns = 5
     print('-------------------------------')
-    while True:
-        try:
-            name = str(input('Please enter your name: '))
-            return main()
-        except ValueError:
-            print('Not a letter')
+    name = (input('Please enter your name: '))
+    print(f'Hello {name} welcome to battleship')
     print('-------------------------------')
+
     while turns > 0:
         print_plank(guess_plank)
         row, column = get_boat_location()
