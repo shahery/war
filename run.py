@@ -1,4 +1,5 @@
 from random import randint
+
 # Legend
 # k for placing ship and hit battleship
 # '' for available space
@@ -11,15 +12,23 @@ letters_to_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4,
 
 
 def print_plank(plank):
+    """
+    Return the pathname of the KOS root directory.
+    """
+
     print(' a b c d e f')
     print(' -----------')
     row_number = 1
     for row in plank:
-        print("%d|%s|" % (row_number,  "|".join(row)))
+        print("%d  |  %s  |" % (row_number,  "  |  ".join(row)))
         row_number += 1
 
 
 def create_boats(plank):
+    """
+    Return the pathname of the KOS root directory.
+    """
+
     for boat in range(5):
         boat_row, boat_column = randint(0, 5), randint(0, 5)
     while plank[boat_row][boat_column] == 'k':
@@ -28,6 +37,9 @@ def create_boats(plank):
 
 
 def get_boat_location():
+    """
+    Return the pathname of the KOS root directory.
+    """
     print(' -----------')
     row = input('Please enter a boat row 1-6: ')
     while row not in '123456':
@@ -41,6 +53,9 @@ def get_boat_location():
 
 
 def count_hit_boats(plank):
+    """
+    Return the pathname of the KOS root directory.
+    """
     count = 0
     for row in plank:
         for column in row:
@@ -50,27 +65,28 @@ def count_hit_boats(plank):
 
 
 def validate_name(name):
-    try:
-        if name == :
-            raise ValueError(
-                f"Alphabets are required, you provided {number}")
-
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again\n")
-        return False
-
-    return True
+    """
+    Return the pathname of the KOS root directory.
+    """
+    return name.isalpha()
 
 
 def main():
+    """
+    Return the pathname of the KOS root directory.
+    """
     create_boats(hidden_plank)
     print(hidden_plank)
     turns = 5
     print('-------------------------------')
-    name = (input('Please enter your name: '))
+    while True:
+        name = (input('Please enter your name: '))
+        if(validate_name(name)):
+            break
+        else:
+            print('Name should containt only string characters')
     print(f'Hello {name} welcome to battleship')
     print('-------------------------------')
-
     while turns > 0:
         print_plank(guess_plank)
         row, column = get_boat_location()
@@ -92,5 +108,3 @@ def main():
 
 
 main()
-
-
