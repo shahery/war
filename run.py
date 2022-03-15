@@ -20,7 +20,7 @@ def print_plank(plank):
     print(' -----------')
     row_number = 1
     for row in plank:
-        print("%d  |  %s  |" % (row_number,  "  |  ".join(row)))
+        print("%d| %s|" % (row_number,  " | ".join(row)))
         row_number += 1
 
 
@@ -81,7 +81,7 @@ def main():
     print('-------------------------------')
     while True:
         name = (input('Please enter your name: '))
-        if(validate_name(name)):
+        if validate_name(name):
             break
         else:
             print('Name should containt only string characters')
