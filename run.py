@@ -20,7 +20,7 @@ def print_plank(plank):
     print(' -----------')
     row_number = 1
     for row in plank:
-        print("%d| %s|" % (row_number,  " | ".join(row)))
+        print("%d | %s |" % (row_number, " | ".join(row)))
         row_number += 1
 
 
@@ -93,7 +93,7 @@ def main():
         if guess_plank[row][column] == 'x':
             print('You already guessed that')
         elif hidden_plank[row][column] == 'k':
-            print('Congratulations, You have hit the battleship')
+            print('Congratulations, You have hit the target.\n ---You Won---')
             print('Play again :)')
             guess_plank[row][column] = 'k'
             break
@@ -103,7 +103,7 @@ def main():
             turns -= 1
             print('You have ' + str(turns) + ' turns remaining')
         if turns == 0:
-            print('Sorry, you ran out of turns, The game over')
+            print('Sorry, your turns are finished,\n ---The game over---')
             break
 
 
