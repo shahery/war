@@ -10,11 +10,8 @@ while matrixSize >= 10 or matrixSize < 3:
     print('Please enter a valid matrix size')
     matrixSize = int(input('Please enter matrix size: '))
 
-
 hidden_board = [['']*matrixSize for x in range(matrixSize)]
 guess_board = [['']*matrixSize for x in range(matrixSize)]
-letters_to_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4,
-                      'f': 5}
 
 
 def print_board(board):
@@ -92,7 +89,7 @@ def main():
         if validate_name(name):
             break
         else:
-            print('Name should only contain string characters(a-z)')
+            print('Name should only contain string characters')
     print(f'Hello {name} welcome to battleship')
     print('-------------------------------')
     while turns > 0:
@@ -107,7 +104,7 @@ def main():
             guess_board[row][column] = 'k'
             break
         else:
-            print('Sorry, You missed')
+            print('Sorry, You missed the target')
             guess_board[row][column] = 'x'
     
             turns -= 1
