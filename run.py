@@ -5,14 +5,6 @@ from random import randint
 # '' for available space
 # x for missing turns
 
-matrixSize = int(input('Please enter matrix size (between 3 and 9): '))
-while matrixSize >= 10 or matrixSize < 3:
-    print('Please enter a valid matrix size')
-    matrixSize = int(input('Please enter matrix size: '))
-
-hidden_board = [['']*matrixSize for x in range(matrixSize)]
-guess_board = [['']*matrixSize for x in range(matrixSize)]
-
 
 def print_board(board):
     """
@@ -31,7 +23,7 @@ def print_board(board):
         row_number += 1
 
 
-def create_ships(board):
+def create_ship(board):
     """
     Return the pathname of the KOS root directory.
     """
@@ -45,18 +37,27 @@ def get_ship_location():
     Return the pathname of the KOS root directory.
     """
     print(' -----------')
-    row = int(input('Please enter a ship row 1 - %d : ' % matrixSize))
-    while row < 0 or row > matrixSize:
-        print('Please enter a vaild row')
-        row = int(input('Please enter a ship row 1 - %d : ' % matrixSize))
-    column = int(input('Please enter a ship column 1 - %d : ' % matrixSize))
-    while column < 0 or column > matrixSize:
-        print('Please enter a valid column')
-        column = int(input('Please enter a ship column 1 - %d : ' % matrixSize))
+    while True:
+        try:
+            row = int(input('Please enter a ship row 1 - %d : ' % matrixSize))
+        except ValueError:
+            print('Please enter a valid integer')
+            continue
+        if(row > 0 and row <= matrixSize):
+            break
+
+    while True:
+        try:
+            column = int(input('Please enter a ship column 1 - %d : ' % matrixSize))
+        except ValueError:
+            print('Please enter a valid integer')
+            continue
+        if(column > 0 and column <= matrixSize):
+            break
     return(int(row)-1, int(column)-1)
 
 
-def count_hit_ships(board):
+def count_hit_ship(board):
     """
     Return the pathname of the KOS root directory.
     """
@@ -79,11 +80,6 @@ def main():
     """
     Return the pathname.
     """
-    create_ships(hidden_board)
-    print(hidden_board)
-    
-    turns = 5
-    print('-------------------------------')
     while True:
         name = (input('Please enter your name: '))
         if validate_name(name):
@@ -91,7 +87,23 @@ def main():
         else:
             print('Name should only contain string characters')
     print(f'Hello {name} welcome to battleship')
-    print('-------------------------------')
+    global matrixSize
+    while True:
+        try:
+            matrixSize = int(input('Please enter matrix size (between 3 and 9): '))
+        except ValueError:
+            print('Please enter a valid integer')
+            continue
+        if(matrixSize > 2 and matrixSize < 10):
+            break
+
+    global hidden_board 
+    global guess_board
+    hidden_board = [['']*matrixSize for x in range(matrixSize)]
+    guess_board = [['']*matrixSize for x in range(matrixSize)]
+    create_ship(hidden_board)
+    print(hidden_board)
+    turns = 5
     while turns > 0:
         print_board(guess_board)
         row, column = get_ship_location()
@@ -106,7 +118,6 @@ def main():
         else:
             print('Sorry, You missed the target')
             guess_board[row][column] = 'x'
-    
             turns -= 1
             print('You have ' + str(turns) + ' turns remaining')
         if turns == 0:
