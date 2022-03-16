@@ -5,8 +5,10 @@ from random import randint
 # '' for available space
 # x for missing turns
 
-hidden_board = [['']*6 for x in range(6)]
-guess_board = [['']*6 for x in range(6)]
+rowLength = int(input('Please enter row size: '))
+
+hidden_board = [['']*rowLength for x in range(rowLength)]
+guess_board = [['']*rowLength for x in range(rowLength)]
 letters_to_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4,
                       'f': 5}
 
@@ -15,8 +17,11 @@ def print_board(board):
     """
     Return the pathname of the KOS root directory.
     """
+    i = 0
+    while rowLength <= i:
+        print('waleed')
+        i += 1
 
-    print(' a b c d e f')
     print(' -----------')
     row_number = 1
     for row in board:
@@ -28,11 +33,10 @@ def create_ships(board):
     """
     Return the pathname of the KOS root directory.
     """
-
-    for ship in range(5):
-        ship_row, ship_column = randint(0, 5), randint(0, 5)
+    for ship in range(rowLength):
+        ship_row, ship_column = randint(0, rowLength-1), randint(0, rowLength)
     while board[ship_row][ship_column] == 'k':
-        ship_row, ship_column = randint(0, 5), randint(0, 5)
+        ship_row, ship_column = randint(0, rowLength), randint(0, rowLength)
     board[ship_row][ship_column] = 'k'
 
 
@@ -41,15 +45,15 @@ def get_ship_location():
     Return the pathname of the KOS root directory.
     """
     print(' -----------')
-    row = input('Please enter a ship row 1-6: ')
-    while row not in '123456':
+    row = int(input('Please enter a ship row 1-6: '))
+    while row < rowLength and row > rowLength:
         print('Please enter a vaild row')
         row = input('Please enter a ship row 1-6: ')
-    column = input('Please enter a ship column a-f: ')
-    while column not in 'abcdef':
+    column = int(input('Please enter a ship column a-f: '))
+    while column < rowLength and column > rowLength:
         print('Please enter a valid column')
-        column = input('Please enter a ship column a-f: ')
-    return(int(row)-1, letters_to_numbers[column])
+        column = int(input('Please enter a ship column a-f: '))
+    return(int(row)-1, int(row)-1)
 
 
 def count_hit_ships(board):
