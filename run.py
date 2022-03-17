@@ -39,7 +39,8 @@ def get_ship_location():
     print(' -----------')
     while True:
         try:
-            row = int(input('Please enter a ship row 1 - %d : ' % matrixSize))
+            row = int(input(('Please enter a ship row 1 - %d : ' 
+                             % matrixSize)))
         except ValueError:
             print('Please enter a valid integer')
             continue
@@ -48,7 +49,8 @@ def get_ship_location():
 
     while True:
         try:
-            column = int(input('Please enter a ship column 1 - %d : ' % matrixSize))
+            column = int(input('Please enter a ship column 1 - %d : '
+                               % matrixSize))
         except ValueError:
             print('Please enter a valid integer')
             continue
@@ -90,14 +92,15 @@ def main():
     global matrixSize
     while True:
         try:
-            matrixSize = int(input('Please enter matrix size (between 3 and 9): '))
+            matrixSize = int(input
+                             ('Please enter matrix size (between 3 and 9): '))
         except ValueError:
             print('Please enter a valid integer')
             continue
         if(matrixSize > 2 and matrixSize < 10):
             break
 
-    global hidden_board 
+    global hidden_board
     global guess_board
     hidden_board = [['']*matrixSize for x in range(matrixSize)]
     guess_board = [['']*matrixSize for x in range(matrixSize)]
@@ -114,6 +117,8 @@ def main():
             print('Play again :)')
 
             guess_board[row][column] = 'k'
+            print_board(guess_board)
+
             break
         else:
             print('Sorry, You missed the target')
