@@ -1,9 +1,23 @@
 from random import randint
+import PIL.Image
+
 
 # Legend
 # k for placing ship and hit battleship
 # '' for available space
 # x for missing turns
+
+ASCII_CHARS = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
+
+
+def resize(image, new_width=100):
+    width, height = image.size
+    new_height = new_width * height / width
+    return image.resize((new_width, new_height))
+
+
+def to_greyscale(image):
+    return image.convert("L")
 
 
 def print_board(board):
@@ -82,6 +96,12 @@ def main():
     """
     Return the pathname.
     """
+    path = input("Enter the path to the image field : \n")
+    try:
+        image = PIL.Image.open(images)
+    except:
+        print(path, "Unable to find image ")
+
     while True:
         name = (input('Please enter your name: '))
         if validate_name(name):
